@@ -139,3 +139,96 @@ GET /api/checkins/today
 Retrieves the user's check-in for today if it exists.
 
 **Success Response (200):**
+
+### Get Check-in History
+
+GET /api/checkins/history
+
+Retrieves paginated check-in history for the user.
+
+**Query Parameters:**
+
+- `page` (optional): Page number, defaults to 1
+- `limit` (optional): Items per page, defaults to 10
+- `startDate` (optional): Filter check-ins from this date (inclusive), format: YYYY-MM-DD
+- `endDate` (optional): Filter check-ins until this date (inclusive), format: YYYY-MM-DD
+
+GET /api/checkins/history // Gets all check-ins
+GET /api/checkins/history?page=2 // Gets second page
+GET /api/checkins/history?limit=20 // Gets first page with 20 items
+GET /api/checkins/history?startDate=2024-03-01 // Gets check-ins from March 1st, 2024
+GET /api/checkins/history?endDate=2024-03-15 // Gets check-ins until March 15th, 2024
+GET /api/checkins/history?startDate=2024-03-01&endDate=2024-03-15 // Gets check-ins within date range
+
+### Update Check-in Entry
+
+PUT /api/checkins/:id
+
+Updates a specific check-in entry. All fields are optional, but at least one must be provided.
+
+**URL Parameters:**
+
+- `id`: The ID of the check-in entry to update
+
+**Request Body:**
+
+{
+"mood": {
+"rating": 9,
+"description": "Happy"
+},
+"activities": [
+"Exercise",
+"Meditation",
+"Work"
+],
+"thoughts": "Had a productive day with good balance of work and self-care",
+"gratitude": [
+{
+"category": "Health",
+"detail": "Maintained my exercise routine and feeling stronger"
+},
+{
+"category": "Career",
+"detail": "Completed a challenging project successfully"
+}
+],
+"goals": {
+"completed": [
+"Finish project presentation",
+"Morning workout"
+],
+"upcoming": [
+"Start new learning course",
+"Plan weekend activities"
+]
+},
+"sleep": {
+"hours": 7.5,
+"quality": 8
+}
+}
+
+### valid categories
+
+'Family','Friends','Health','Career','Personal Growth','Nature','Home','Learning','Experiences','Basic Needs'
+
+### valid activities
+
+'Exercise','Reading','Meditation','Work','Study','Social Activity','Hobby','Entertainment','Outdoor Activity','Rest'
+
+### valid moods
+
+'Very Happy','Happy','Content','Neutral','Anxious','Stressed','Sad','Very S
+
+### Delete Check-in Entry
+
+DELETE /api/checkins/:id
+
+Deletes a specific check-in entry.
+
+**URL Parameters:**
+
+- `id`: The ID of the check-in entry to delete
+
+**Success Response (200):**
