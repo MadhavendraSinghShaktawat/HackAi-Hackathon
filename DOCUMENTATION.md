@@ -232,3 +232,45 @@ Deletes a specific check-in entry.
 - `id`: The ID of the check-in entry to delete
 
 **Success Response (200):**
+
+### Voice Chat API
+
+#### Process Voice Input
+
+POST /api/voice/chat
+
+Processes transcribed voice input and returns an AI response.
+
+**Request Body:**
+json
+{
+"text": "I'm feeling anxious about my upcoming presentation",
+"context": [
+{
+"role": "user",
+"content": "Hi, I need some advice"
+},
+{
+"role": "assistant",
+"content": "Hello! I'm here to help. What's on your mind?"
+}
+]
+}
+
+### New Voice Session
+
+POST /api/voice/session/start
+
+### Use the session for chat
+
+POST /api/voice/chat
+
+Headers: X-Session-ID: <session-id>
+{
+"text": "I'm feeling anxious about my upcoming presentation"
+}
+
+### # End a session
+
+POST /api/voice/session/end
+Headers: X-Session-ID: <session-id>
